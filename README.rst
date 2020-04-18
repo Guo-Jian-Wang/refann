@@ -4,10 +4,8 @@ ReFANN
 **ReFANN (Reconstruct Functions with Artificial Neural Network)**
 
 ReFANN is a nonlinear interpolating tool based on ANN, without assuming 
-a model or parameterization. 
-
-It can reconstruct functions from data with no assumption to the data, 
-and is a completely data-driven approach.
+a model or parameterization. It can reconstruct functions from data with 
+no assumption to the data, and is a completely data-driven approach.
 
 It is proposed by `Guo-Jian Wang, Xiao-Jiao Ma, Si-Yao Li, Jun-Qing Xia (2020) 
 <https://doi.org/10.3847/1538-4365/ab620b>`_.
