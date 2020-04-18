@@ -37,3 +37,12 @@ $ sudo pip install refann-master.zip
 or
 
 $ sudo python setup.py install
+
+
+
+License
+-------
+
+Copyright 2020-2020 Guojian Wang
+
+refann is free software made available under the MIT License. For details see the LICENSE file.
