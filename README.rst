@@ -35,7 +35,7 @@ CUDA (optional)
 Installation
 ------------
 
-$ sudo pip install refann-*.tar.gz
+$ sudo pip install refann-master.zip
 
 or
 
