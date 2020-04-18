@@ -19,7 +19,7 @@ Attribution
 
 If you use this code in your research, please cite: Guo-Jian Wang, Xiao-Jiao Ma, Si-Yao Li, and Jun-Qing Xia, 2020, ApJS, 246, 13
 
-The paper can be found from `<https://doi.org/10.3847/1538-4365/ab620b>`_ or `<https://arxiv.org/abs/1910.03636>`_.
+`The paper can be found from <https://doi.org/10.3847/1538-4365/ab620b>`_.
 
 
 
