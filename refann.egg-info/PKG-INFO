@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: refann
+Version: 1.0.0
+Summary: Reconstruct Functions with Artificial Neural Network
+Home-page: UNKNOWN
+Author: Guojian Wang
+Author-email: gjwang@mail.bnu.edu.cn
+License: MIT
+Description: UNKNOWN
+Keywords: pip,ANN
+Platform: any
