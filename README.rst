@@ -1,5 +1,5 @@
 ReFANN
-=====
+======
 
 **ReFANN (Reconstruct Functions with Artificial Neural Network)**
 
@@ -9,6 +9,8 @@ no assumption to the data, and is a completely data-driven approach.
 
 It is proposed by `Guo-Jian Wang, Xiao-Jiao Ma, Si-Yao Li, Jun-Qing Xia (2020) 
 <https://doi.org/10.3847/1538-4365/ab620b>`_.
+
+.. The code is open source and has been used in several projects in the Astrophysics literature. #to be updated
 
 
 
@@ -32,7 +34,7 @@ CUDA (optional)
 Installation
 ------------
 
-$ sudo pip install refann-master.zip
+$ sudo pip install refann
 
 or
 
@@ -46,3 +48,4 @@ License
 Copyright 2020-2020 Guojian Wang
 
 refann is free software made available under the MIT License. For details see the LICENSE file.
+
