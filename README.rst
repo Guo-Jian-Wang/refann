@@ -25,9 +25,8 @@ Si-Yao Li, Jun-Qing Xia, ApJS, 246, 13 (2020) <https://doi.org/10.3847/1538-4365
 Requirements
 ------------
 
-PyTorch
-
-CUDA (optional)
+* `PyTorch <https://pytorch.org/>`_
+* `CUDA <https://developer.nvidia.com/cuda-downloads>`_ (optional, but suggested)
 
 
 
