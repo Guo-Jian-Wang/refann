@@ -34,12 +34,15 @@ CUDA (optional)
 Installation
 ------------
 
-$ sudo pip install refann
+You can install refann by using pip::
 
-or
+    $ sudo pip install refann
 
-$ sudo python setup.py install
+or from source::
 
+    $ git clone https://github.com/Guo-Jian-Wang/refann.git    
+    $ cd refann
+    $ sudo python setup.py install
 
 
 License
