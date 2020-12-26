@@ -26,7 +26,9 @@ It is proposed by `Guo-Jian Wang, Xiao-Jiao Ma, Si-Yao Li, Jun-Qing Xia (2020) <
 
 How to use ReFANN
 =================
-how to use refann?
+
+First, you are probably going to needs see the :ref:`introduction` guide to learn the basic principles of ReFANN. After that, you may need to install refann on your computer according to the :ref:`installation` guide, and then following the :ref:`quickStart` guide to learn how to use it. If you need more detailed information about a specific function, the :ref:`package_reference` below should have what you need.
+
 
 
 Contents:
