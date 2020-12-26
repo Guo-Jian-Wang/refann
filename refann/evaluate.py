@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed May 22 03:32:29 2019
 
-@author: Guojian Wang
-"""
 from . import data_process as dp
 from torch.autograd import Variable
 import numpy  as np
@@ -11,13 +7,16 @@ import matplotlib.pyplot as plt
 
 
 def predict(net, inputs, use_GPU=False, in_type='numpy'):
-    """Prediction
+    """Make predictions using a well-trained network.
     
     Parameters
     ----------
+    inputs : numpy array or torch tensor
+        The inputs of the network.
     use_GPU : bool
-            if True, run in GPU, otherwise, run in CPU
-    in_type : str, 'numpy' or 'torch'
+            If True, calculate using GPU, otherwise, calculate using CPU.
+    in_type : str
+        The data type of the inputs, it can be 'numpy' or 'torch'.
     """
     if use_GPU:
         net = net.cuda()

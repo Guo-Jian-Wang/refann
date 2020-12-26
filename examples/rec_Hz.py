@@ -17,12 +17,13 @@ start_time = time.time()
 Hz = np.loadtxt('data/Hz31.txt')
 
 rec = rf.ANN(Hz,mid_node=4096,hidden_layer=1,hp_model='rec_2')
+rec.iteration = 30000
 rec.train()
 func = rec.predict(xpoint=np.linspace(0, 2, 201))
 #func = rec.predict(xspace=(0, 2, 201)) #or use this
 rec.save_func(path='rec_2', obsName='Hz31') #save the reconstructed function
 
-rec.plot_loss()
+# rec.plot_loss()
 rec.plot_func()
 
 

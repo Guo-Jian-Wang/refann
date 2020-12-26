@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Aug 13 10:48:37 2017
-2017 - 2017
-
-@author: Guojian Wang
-"""
 
 import numpy as np
 import os
@@ -12,8 +6,17 @@ import os
 
 def mkdir(path):
     """Make a directory in a particular location if it is not exists, otherwise, do nothing.
-        
-    Usage : mkdir('/home/jian/test'), mkdir('test/one') or mkdir('../test/one') 
+    
+    Parameters
+    ----------
+    path : str
+        The path of a file.
+    
+    Examples
+    --------
+    >>> mkdir('/home/UserName/test')
+    >>> mkdir('test/one')
+    >>> mkdir('../test/one')
     """
     #remove the blank space in the before and after strings
     #path.strip() is used to remove the characters in the beginning and the end of the character string
@@ -36,33 +39,34 @@ def mkdir(path):
         pass
  
 def savetxt(path, FileName, File):
-    """Save the .txt files using np.savetxt() funtion
-    
-    path : the path of the file to be saved
-    FileName : the name of the file to be saved
-    File : the file to be saved
+    """Save the .txt files using :func:`numpy.savetxt()` funtion.
+
+    Parameters
+    ----------
+    path : str
+        The path of the file to be saved.
+    FileName : str
+        The name of the file to be saved.
+    File : object
+        The file to be saved.
     """
     mkdir(path)
     np.savetxt(path + '/' + FileName + '.txt', File)
 
-def savedat(path, FileName, File):
-    """Save the .dat files using np.savetxt() funtion
-    
-    path : the path of the file to be saved
-    FileName : the name of the file to be saved
-    File : the file to be saved
-    """
-    mkdir(path)
-    np.savetxt(path + '/' + FileName + '.dat', File)
-
 def savenpy(path, FileName, File, dtype=np.float32):
-    """Save an array to a binary file in NumPy .npy format using np.save() function
+    """Save an array to a binary file in .npy format using :func:`numpy.save()` function.
     
-    path : the path of the file to be saved
-    FileName : the name of the file to be saved
-    File : the file to be saved
+    Parameters
+    ----------
+    path : str
+        The path of the file to be saved.
+    FileName : str
+        The name of the file to be saved.
+    File : object
+        The file to be saved.
+    dtype : str or object
+        The type of the data to be saved. Default: ``numpy.float32``.
     """
     mkdir(path)
     File = File.astype(dtype)
     np.save(path + '/' + FileName + '.npy', File)
-

@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 14 20:58:04 2019
-
-@author: Guojian Wang
-"""
-
-""" ReFANN: Reconstruct Functions with Artificial Neural Network """
 
 from . import data_process as dp
 from . import train, evaluate, fcnet, hpmodel, nodeframe, save
@@ -15,35 +8,50 @@ import matplotlib.pyplot as plt
 
 
 class ANN(train.Train):
+    """Reconstruct functions with Artificial Neural Network.
+    
+    Parameters
+    ----------
+    data : array-like
+        An array with shape of (N, 3), where N is the number of data points, each column represents :math:`X, Y, \sigma_Y`.
+    hidden_layer : int, optional
+        The number of hidden layers. Default: 1
+    mid_node : int, optional
+        The number of nodes (or neurons) of the middle layer. Default: 4096
+    hp_model : int, optional
+        The hyperparameter models, 'rec_1' (no batch normalization) or 'rec_2' (with batch normalization). Default: 'rec_1'
+    loss_func : str, optional
+        The loss function, there are three loss functions in this code, L1Loss ('L1'), 
+        MSELoss ('MSE'), and SmoothL1Loss ('SmoothL1'). Default: 'L1'
+    
+    Attributes
+    ----------
+    lr : float, optional
+        The learning rate. Default: 1e-1
+    lr_min : float, optional
+        The minimum of the learning rate. Default: 1e-8
+    iteration : int, optional
+        The number of iterations. Default: 30000
+    batch_size_max : int, optional
+        The maximum of the batch size. Defalt: 300
+    scale_inputs : bool, optional
+        If True, the inputs data will be normalized, otherwise, do nothing. Defalt: True
+    scale_target : bool, optional
+        If True, the outputs (or target) data will be normalized, otherwise, do nothing. Defalt: True
+    scale_type : str, optional
+        The normalization method, 'minmax', 'mean', or 'z_score'. Default: 'z_score'
+    fix_initialize : bool, optional
+        If True, the network will be initialized from a specific seed. Default: True
+    print_info : bool, optional
+        If True, some information about the training process will be printed. Default: True
+    
+    Note
+    ----
+    Hyperparameters of the ANN, such as the number of hidden layers (``hidden_layer``), 
+    the number of neurons (``mid_node``), hyperparameter model (``hp_model``), should be optimized 
+    before reconstructing functions from data. See https://doi.org/10.3847/1538-4365/ab620b for details.
+    """        
     def __init__(self,data,hidden_layer=1,mid_node=4096,hp_model='rec_1',loss_func='L1'):
-        """Reconstruct functions with ANN
-        
-        Parameters
-        ----------
-        data : array-like, with shape of (N, 3), each column represents X, Y, sigma_Y
-        hidden_layer : int, the number of hidden layers
-        mid_node : int, the number of nodes (or neurons) of the middle layer
-        hp_model : str, the hyperparameter models, there are two hyperparameter 
-            models in this code, 'rec_1' and 'rec_2', one can also use other models by modifying 'hpmodel.py'
-        loss_func : str, the loss function, there are three loss functions in this code, 
-            L1Loss ('L1'), MSELoss ('MSE'), and SmoothL1Loss ('SmoothL1'), default: 'L1'
-            
-        lr : float, the learning rate, default: 1e-1
-        lr_min : float, the minimum of the learning rate, default: 1e-8
-        iteration : int, the number of iterations, default: 30000
-        batch_size_max : the maximum of the batch size, defalt: 300
-        scale_inputs : bool, if True, the inputs data will be normalized
-        scale_target : bool, if True, the outputs (or target) data will be normalized
-        scale_type : str, the normalization method, 'minmax', 'mean', or 'z_score', default: 'z_score'
-        fix_initialize : bool, if True, the network will be initialized from a specific seed, default: True
-        print_info : bool, if True, some information about the training process will be printed, default: True
-        
-        Note:
-        ----
-        Hyperparameters of the ANN, such as the number of hidden layers (hidden_layer), 
-        the number of neurons (mid_node), hyperparameter model (hp_model), should be optimized 
-        before reconstructing functions from data. See https://doi.org/10.3847/1538-4365/ab620b for details.
-        """
         self.data = data
         self.inputs = np.reshape(data[:,0],(-1,1))
         self.target = data[:,1:]
@@ -109,9 +117,18 @@ class ANN(train.Train):
     def predict(self, xpoint=None, xspace=None):
         """Prediction
         
-        xpoint : an array of x points
-        xspace : None or tuple or list
-                if not None, xpoint will be ignored, and it should be (xmin, xmax, npoint) or [xmin, xmax, npoint]
+        Parameters
+        ----------
+        xpoint : array-like or None, optional
+            An array of :math:`X` points. Default: None
+        xspace : tuple, list, or None, optional
+            If not None, xpoint will be ignored, and it should be (xmin, xmax, npoint) or [xmin, xmax, npoint]. Default: None
+
+        Returns
+        -------
+        array-like
+            The reconstructed function.
+
         """
         if xpoint is None:
             if xspace is None:
@@ -149,13 +166,13 @@ class ANN(train.Train):
         evaluate.plot_loss(self.loss)
     
     def plot_func(self):
-        plt.figure(figsize=(6*1.5,4.5*1.5))
-        plt.errorbar(self.data[:,0], self.data[:,1], yerr=self.data[:,2], fmt='r.', alpha=0.6)
-        plt.plot(self.func[:,0], self.func[:,1], 'k', label=r'$\rm f(x)$', lw=2)
+        plt.figure(figsize=(8, 6))
+        plt.errorbar(self.data[:,0], self.data[:,1], yerr=self.data[:,2], fmt='ro', alpha=1, label='Observational data')
+        plt.plot(self.func[:,0], self.func[:,1], 'k', label=r'$\rm Predicted\ f(x)$', lw=2)
         plt.fill_between(self.func[:,0], self.func[:,1]-self.func[:,2], self.func[:,1]+self.func[:,2],
                          label=r'$\rm\sigma_{f(x)}$', color='g', alpha=0.5)
-        plt.xlabel('X', fontsize=16)
-        plt.ylabel('Y', fontsize=16)
+        plt.xlabel('x', fontsize=16)
+        plt.ylabel('f(x)', fontsize=16)
         plt.legend(fontsize=16)
 
 class OptimizeANN(object):
@@ -213,7 +230,27 @@ class OptimizeANN(object):
         plt.ylabel('Risk', fontsize=16)
 
 class RePredictANN(ANN):
-    def __init__(self,data,hidden_layer=1,mid_node=1024):
+    """Reconstruct function using the saved well-trained networks
+    
+    Parameters
+    ----------
+    data : array-like
+        An array with shape of (N, 3), where N is the number of data points, each column represents :math:`X, Y, \sigma_Y`.
+    hidden_layer : int, optional
+        The number of hidden layers. Default: 1
+    mid_node : int, optional
+        The number of nodes (or neurons) of the middle layer. Default: 4096
+    
+    Attributes
+    ----------
+    scale_inputs : bool, optional
+        If True, the inputs data will be normalized, otherwise, do nothing. Defalt: True
+    scale_target : bool, optional
+        If True, the outputs (or target) data will be normalized, otherwise, do nothing. Defalt: True
+    scale_type : str, optional
+        The normalization method, 'minmax', 'mean', or 'z_score'. Default: 'z_score'
+    """
+    def __init__(self,data,hidden_layer=1,mid_node=4096):
         self.data = data
         self.inputs = np.reshape(data[:,0],(-1,1))
         self.target = data[:,1:]

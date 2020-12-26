@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 20 01:17:28 2018
-
-@author: Guojian Wang
-"""
 
 import torch.nn as nn
 
@@ -27,4 +22,3 @@ def elu():
 
 def activation(active_name='relu'):
     return eval('%s()'%active_name)
-

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 14 14:00:35 2019
 
-@author: Guojian Wang
-"""
 from . import optimize
 from . import data_process as dp
 import torch

@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 19 16:25:44 2018
-
-@author: Guojian Wang
-"""
 
 from . import sequence as seq
 from . import nodeframe, hpmodel
@@ -22,16 +17,21 @@ class FcNet(torch.nn.Module):
         return x
 
 def get_FcNet(node_in=2000, node_out=6, hidden_layer=3, nodes=None, hparams={}):
-    """Obtain a fully connected network
+    """Get a fully connected network.
     
     Parameters
     ----------
-    node_in : int, the number of input nodes
-    node_out : int, the number of output nodes
-    hidden_layer : int, the number of hidden layers
-    nodes : None or a list,
-            if a list, it should be a collection of nodes of the network, e.g. [node_in, node_hidden1, node_hidden2, ..., node_out]
-    hparams : a dictionary, the hyperparameters (or hidden parameters) of the netwowrk
+    node_in : int
+        The number of the input nodes.
+    node_out : int
+        The number of the output nodes.
+    hidden_layer : int
+        The number of the hidden layers.
+    nodes : None or list
+            If list, it should be a collection of nodes of the network, e.g. [node_in, node_hidden1, node_hidden2, ..., node_out]
+    hparams : dict
+        A dictionary of hyperparameters (or hidden parameters, such as the activation function,
+        the batch normalization, and the dropout) of the netwowrk. See :func:`~.hpmodel.models`.
     """
     if nodes is None:
         nodes = nodeframe.decreasingNode(node_in=node_in, node_out=node_out, hidden_layer=hidden_layer, get_allNode=True)
@@ -48,4 +48,3 @@ def get_FcNet(node_in=2000, node_out=6, hidden_layer=3, nodes=None, hparams={}):
 #    print ('Nodes: %s'%nodes)
 #    print ('Network: %s'%net)
     return net
-

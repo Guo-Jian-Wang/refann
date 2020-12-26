@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 14 14:07:37 2019
-
-@author: Guojian Wang
-"""
 
 # the models of hyperparameters
 
-
 def models(key):
+    """Hyperparameter models.
+    
+    Parameters
+    ----------
+    key : str
+        Hyperparameter model that contains hyperparameters (such as activation function, batch normalization, dropout, etc.) used in the network.
+        It can be 'rec_1' (no batch normalization) or 'rec_2' (with batch normalization).
+    
+    Returns
+    -------
+    object
+        Hyperparameter model.
+    
+    """
     return eval(key)()
 
 def nuisance_hp(hparams):
-    """ the hyperparameters that could be set to deterministic values """
+    """ The hyperparameters that could be set to deterministic values. """
     nhp = {'finalActive' : 'None',
            'finalBN' : False,
            'finalDropout' : 'None'}
@@ -41,4 +49,3 @@ def default():
             'BN' : True,
             'dropout' : 'None'
             }
-

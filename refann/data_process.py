@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Aug 12 02:04:07 2018
-
-@author: Guojian Wang
-"""
 
 import numpy as np
 import torch
@@ -35,9 +30,8 @@ def cuda2torch(data):
 def cuda2numpy(data):
     return data.cpu().numpy()
 
-
 class Normalize(object):
-    """ Normalize data """
+    """ Normalize data. """
     def __init__(self, x, statistic={}, norm_type='z_score'):
         self.x = x
         self.stati = statistic
@@ -63,7 +57,7 @@ class Normalize(object):
         return eval('self.%s()'%self.norm_type)
 
 class InverseNormalize(object):
-    """ Inverse transformation of class Normalize """
+    """ Inverse transformation of class :class:`~Normalize`. """
     def __init__(self, x1, statistic={}, norm_type='z_score'):
         self.x = x1
         self.stati = statistic
@@ -81,9 +75,8 @@ class InverseNormalize(object):
     def inverseNorm(self):
         return eval('self.%s()'%self.norm_type)
 
-
 class Statistic(object):
-    """ Statistics of an array """
+    """ Statistics of an array. """
     def __init__(self, x):
         self.x = x
     

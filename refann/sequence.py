@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 20 01:44:24 2018
 
-@author: Guojian Wang
-"""
 from . import element
 import torch.nn as nn
 
 class SeqName(object):
+    """ The name of sequence, to be used by class LinearSeq """
     def __init__(self, module_name):
-        """ The name of sequence, to be used by class LinearSeq """
         self.moduleName = module_name
     
     def seq_name(self):
@@ -38,7 +34,7 @@ class Dropout(object):
 
 
 class LinearSeq(SeqName,BatchNorm,Activation,Dropout):
-    """ sequence of Linear """
+    """ Sequence of Linear """
     def __init__(self, nodes, mainBN=True, finalBN=False, mainActive='relu',
                  finalActive='None', mainDropout='None', finalDropout='None'):
         SeqName.__init__(self, '-1') #or super(LinearSeq, self).__init__('-1')
@@ -75,4 +71,3 @@ class LinearSeq(SeqName,BatchNorm,Activation,Dropout):
         if self.finalDropout!='None':
             self._dropout(self.seq_name(), self.finalDropout)
         return self.seq
-
