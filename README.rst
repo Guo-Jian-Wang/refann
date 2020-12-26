@@ -13,6 +13,12 @@ It is proposed by `Guo-Jian Wang, Xiao-Jiao Ma, Si-Yao Li, Jun-Qing Xia (2020)
 .. The code is open source and has been used in several projects in the Astrophysics literature. #to be updated
 
 
+Documentation
+-------------
+
+The documentation can be found at `refann.readthedocs.io <https://refann.readthedocs.io>`_.
+
+
 
 Attribution
 -----------
