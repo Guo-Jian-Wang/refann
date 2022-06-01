@@ -138,7 +138,7 @@ class ANN(train.Train):
         x = np.copy(xpoint)
         if self.scale_inputs:
             xpoint = dp.Normalize(xpoint, self.inputs_statistic, norm_type=self.scale_type).norm()
-        y = evaluate.predict(self.net, np.reshape(xpoint, (-1,1)))##
+        y = evaluate.predict(self.net, np.reshape(xpoint, (-1,1)), use_GPU=self.use_GPU)##
         if self.scale_target:
             y = dp.InverseNormalize(y, self.target_statistic, norm_type=self.scale_type).inverseNorm()
         self.func = np.c_[x, y]
